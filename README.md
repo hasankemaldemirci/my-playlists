@@ -1,7 +1,7 @@
 # My Spotify Playlists 🎧
 
-> Lists User's existing playlists and tracks from Spotify. <br>
-> Live Demo : https://my-playlists.herokuapp.com
+> Lists User's existing playlists and tracks from Spotify.
+Live Demo : https://my-playlists.herokuapp.com
 
 ## Build Setup
 
