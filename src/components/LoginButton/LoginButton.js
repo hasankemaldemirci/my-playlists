@@ -4,7 +4,7 @@ import React from "react";
 import "./LoginButton.scss";
 
 // Images
-import SpotifyLogo from "../../img/spotify-icon.png";
+import SpotifyIcon from "../../img/spotify-icon.png";
 
 const LoginButton = () => {
   const authURL = process.env.REACT_APP_AUTH_URL;
@@ -21,7 +21,7 @@ const LoginButton = () => {
     return (
       <a href={url} className="login-button">
         <img
-          src={SpotifyLogo}
+          src={SpotifyIcon}
           alt="Login to Spotify"
           className="login-button__icon"
         />
