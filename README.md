@@ -9,6 +9,9 @@ Live Demo : https://my-playlists.herokuapp.com
 # install project
 $ git clone https://github.com/hasankemaldemirci/my-playlists.git
 
+# open app directory
+$ cd my-playlists
+
 # install dependencies
 $ npm i || npm install
 
