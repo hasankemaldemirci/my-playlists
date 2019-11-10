@@ -6,12 +6,15 @@ Live Demo : https://my-playlists.herokuapp.com
 ## Build Setup
 
 ```bash
+# install project
+$ git clone https://github.com/hasankemaldemirci/my-playlists.git
+
 # install dependencies
-npm i || npm install
+$ npm i || npm install
 
 # serve with hot reload at localhost
-npm run dev
+$ npm run dev
 
 # build for production
-npm build
+$ npm build
 ```
