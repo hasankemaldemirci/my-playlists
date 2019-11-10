@@ -41,14 +41,14 @@ const Playlists = () => {
           {playlists.map((playlist, index) => {
             return (
               <div className="playlist-card" key={index}>
-                { playlist.name }
+                {playlist.name}
               </div>
-            )
+            );
           })}
         </div>
       ) : null}
     </div>
   );
-}
+};
 
 export default Playlists;
