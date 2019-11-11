@@ -4,7 +4,14 @@ import React from "react";
 import "./PlaylistCard.scss";
 
 const PlaylistCard = ({ playlist }) => {
-  return <div className="playlist-card">{playlist.name}</div>;
+  return (
+    <div className="playlist-card">
+      <figure
+        className="playlist-card__img"
+        style={{ backgroundImage: `url(${playlist.images[0].url})` }}
+      ></figure>
+    </div>
+  );
 };
 
 export default PlaylistCard;
