@@ -2,9 +2,11 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;  
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, .075);
+  height: 50px;
+  background-color: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.075);
   color: #666;
   line-height: 50px;
   text-align: center;
+  z-index: 1;
 }
