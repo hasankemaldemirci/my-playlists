@@ -20,7 +20,7 @@ const Header = () => {
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const user = useSelector(state => state.user);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [dropdownToggle, setDropdownToggle] = useState(false);
 
   // Fetch User Data

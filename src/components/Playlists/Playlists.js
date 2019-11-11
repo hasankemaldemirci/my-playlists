@@ -9,7 +9,7 @@ import "./Playlists.scss";
 import PlaylistCard from "../PlaylistCard/PlaylistCard";
 
 const Playlists = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playlists, setPlaylists] = useState([]);
 
@@ -21,7 +21,7 @@ const Playlists = () => {
         setPlaylists(res.data.items);
       });
     } catch (error) {
-      setError(true);
+      setError(error);
     } finally {
       setLoading(false);
     }
