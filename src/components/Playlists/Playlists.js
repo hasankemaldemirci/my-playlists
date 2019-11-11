@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import token from "../../app/auth";
 import { getPlaylists } from "../../app/api";
 
+// Styles
 import "./Playlists.scss";
+
+// Components
+import PlaylistCard from "../PlaylistCard/PlaylistCard";
 
 const Playlists = () => {
   const [loading, setLoading] = useState(true);
@@ -39,11 +43,7 @@ const Playlists = () => {
       ) : playlists ? (
         <div className="playlists-wrapper">
           {playlists.map((playlist, index) => {
-            return (
-              <div className="playlist-card" key={index}>
-                {playlist.name}
-              </div>
-            );
+            return <PlaylistCard playlist={playlist} key={index} />;
           })}
         </div>
       ) : null}
