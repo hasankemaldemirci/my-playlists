@@ -7,6 +7,7 @@ import "./Playlists.scss";
 
 // Components
 import PlaylistCard from "../PlaylistCard/PlaylistCard";
+import Loader from "../Loader/Loader";
 
 const Playlists = () => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,9 @@ const Playlists = () => {
     } catch (error) {
       setError(error);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     }
   };
 
@@ -37,7 +40,7 @@ const Playlists = () => {
     <div className="playlists">
       <h1 className="hero">My Playlists</h1>
       {loading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : playlists ? (

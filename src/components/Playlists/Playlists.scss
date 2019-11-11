@@ -1,6 +1,10 @@
-.playlists-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -10px;
-  margin-right: -10px;
+.playlists {
+  position: relative;
+  min-height: calc(100vh - 140px);
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
 }
