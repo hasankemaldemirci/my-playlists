@@ -5,7 +5,6 @@ const isAuthenticated = () => {
   const token = hash.access_token || localStorage.getItem("token");
   if (token) {
     localStorage.setItem("token", token);
-    history.replace("/");
     return token;
   } else {
     history.replace("/login");
