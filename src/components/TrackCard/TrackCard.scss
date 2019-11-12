@@ -1,0 +1,22 @@
+.track-card {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  &__cover {
+    margin-right: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .track-name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .track-artist {
+    font-weight: 500;
+    opacity: .75;
+  }
+  &:hover {
+    color: inherit;
+  }
+}

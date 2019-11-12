@@ -9,4 +9,9 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .hero {
+    position: sticky;
+    top: 50px;
+    z-index: 3;
+  }
 }
