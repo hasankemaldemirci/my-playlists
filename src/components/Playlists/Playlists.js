@@ -9,7 +9,7 @@ import "./Playlists.scss";
 import PlaylistCard from "../PlaylistCard/PlaylistCard";
 import Loader from "../Loader/Loader";
 
-const Playlists = () => {
+const Playlists = props => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playlists, setPlaylists] = useState([]);
@@ -46,7 +46,13 @@ const Playlists = () => {
       ) : playlists ? (
         <div className="playlists-wrapper">
           {playlists.map((playlist, index) => {
-            return <PlaylistCard playlist={playlist} key={index} />;
+            return (
+              <PlaylistCard
+                playlist={playlist}
+                hash={props.location.hash}
+                key={index}
+              />
+            );
           })}
         </div>
       ) : null}

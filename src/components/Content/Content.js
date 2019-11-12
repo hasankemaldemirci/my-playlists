@@ -3,10 +3,10 @@ import React from "react";
 // Styles
 import "./Content.scss";
 
-const Content = ({ body }) => {
+const Content = props => {
   return (
     <main className="content">
-      <div className="container">{body}</div>
+      <div className="container">{props.children}</div>
     </main>
   );
 };

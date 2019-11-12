@@ -21,3 +21,12 @@ export const getPlaylists = () => {
 
   return response;
 };
+
+export const getPlaylistTracks = playlistId => {
+  const response = axios({
+    url: `${apiURL}/playlists/${playlistId}/tracks`,
+    headers: headers
+  });
+
+  return response;
+};
