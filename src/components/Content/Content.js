@@ -4,11 +4,7 @@ import React from "react";
 import "./Content.scss";
 
 const Content = props => {
-  return (
-    <main className="content">
-      <div className="container">{props.children}</div>
-    </main>
-  );
+  return <main className="content">{props.children}</main>;
 };
 
 export default Content;

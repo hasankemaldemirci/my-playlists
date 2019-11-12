@@ -1,0 +1,12 @@
+.tracks {
+  position: relative;
+  min-height: calc(100vh - 100px);
+  &-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .hero {
+    position: sticky;
+    top: 50px;
+  }
+}

@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #333;
+  --primary-color: #404040;
   --link-hover-color: #1aa34a;
   --font: "-apple-system, BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -68,7 +68,12 @@ figure {
 }
 
 .hero {
-  font-size: 26px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #eee;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  h1 {
+    margin: 0;
+    font-size: 26px;
+  }
 }
