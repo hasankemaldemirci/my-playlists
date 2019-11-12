@@ -38,23 +38,24 @@ const Playlists = () => {
 
   return (
     <div className="playlists">
-      <h1 className="hero">My Playlists</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <div>Error: {error.message}</div>
-      ) : playlists ? (
-        <div className="playlists-wrapper">
-          {playlists.map((playlist, index) => {
-            return (
-              <PlaylistCard
-                playlist={playlist}
-                key={index}
-              />
-            );
-          })}
+      <div className="hero">
+        <div className="container">
+          <h1>Playlists</h1>
         </div>
-      ) : null}
+      </div>
+      <div className="container">
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : playlists ? (
+          <div className="playlists-wrapper">
+            {playlists.map((playlist, index) => {
+              return <PlaylistCard playlist={playlist} key={index} />;
+            })}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

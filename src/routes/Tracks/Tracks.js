@@ -36,18 +36,24 @@ const Tracks = props => {
 
   return (
     <div className="tracks">
-      <h1 className="hero">{props.match.params.name}'s Tracks</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <div>Error: {error.message}</div>
-      ) : tracks ? (
-        <div className="tracks-wrapper">
-          {tracks.map(({ track }, index) => {
-            return <div key={index}>{track.name}</div>;
-          })}
+      <div className="hero">
+        <div className="container">
+          <h1>{props.match.params.name} - Tracks</h1>
         </div>
-      ) : null}
+      </div>
+      <div className="container">
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : tracks ? (
+          <div className="tracks-wrapper">
+            {tracks.map(({ track }, index) => {
+              return <div key={index}>{track.name}</div>;
+            })}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };
