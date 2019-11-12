@@ -6,6 +6,7 @@ import "./Tracks.scss";
 
 // Components
 import Loader from "../../components/Loader/Loader";
+import TrackCard from "../../components/TrackCard/TrackCard";
 
 const Tracks = props => {
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,7 @@ const Tracks = props => {
         ) : tracks ? (
           <div className="tracks-wrapper">
             {tracks.map(({ track }, index) => {
-              return <div key={index}>{track.name}</div>;
+              return <TrackCard track={track} key={index} />;
             })}
           </div>
         ) : null}
