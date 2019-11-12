@@ -5,7 +5,7 @@ import { getPlaylistTracks } from "../../app/api";
 import "./Tracks.scss";
 
 // Components
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 const Tracks = props => {
   const [loading, setLoading] = useState(false);

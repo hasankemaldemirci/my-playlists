@@ -8,8 +8,10 @@ import "./App.scss";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Content from "../Content/Content";
-import Playlists from "../Playlists/Playlists";
-import Tracks from "../Tracks/Tracks";
+
+// Routes
+import Playlists from "../../routes/Playlists/Playlists";
+import Tracks from "../../routes/Tracks/Tracks";
 
 const App = () => {
   return (

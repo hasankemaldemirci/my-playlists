@@ -6,8 +6,8 @@ import { getPlaylists } from "../../app/api";
 import "./Playlists.scss";
 
 // Components
-import PlaylistCard from "../PlaylistCard/PlaylistCard";
-import Loader from "../Loader/Loader";
+import PlaylistCard from "../../components/PlaylistCard/PlaylistCard";
+import Loader from "../../components/Loader/Loader";
 
 const Playlists = props => {
   const [loading, setLoading] = useState(false);
