@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInfo } from "../../app/api";
-import token from "../../app/auth";
+import isAuthenticated from "../../app/auth";
 
 // Styles
 import "./Header.scss";
@@ -42,7 +42,7 @@ const Header = () => {
 
   // Set user login & user info when token is available
   useEffect(() => {
-    if (token) {
+    if (isAuthenticated) {
       dispatch({ type: "LOGIN" });
       fetchData();
     }
@@ -52,6 +52,7 @@ const Header = () => {
   // Log Out
   const logout = () => {
     dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("token");
   };
 
   // User Dropdown Toggle

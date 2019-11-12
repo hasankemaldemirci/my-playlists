@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import token from "../../app/auth";
+import isAuthenticated from "../../app/auth";
 import { getPlaylists } from "../../app/api";
 
 // Styles
@@ -9,7 +9,7 @@ import "./Playlists.scss";
 import PlaylistCard from "../../components/PlaylistCard/PlaylistCard";
 import Loader from "../../components/Loader/Loader";
 
-const Playlists = props => {
+const Playlists = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playlists, setPlaylists] = useState([]);
@@ -31,7 +31,7 @@ const Playlists = props => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (isAuthenticated) {
       fetchData();
     }
   }, []);
@@ -49,7 +49,6 @@ const Playlists = props => {
             return (
               <PlaylistCard
                 playlist={playlist}
-                hash={props.location.hash}
                 key={index}
               />
             );
