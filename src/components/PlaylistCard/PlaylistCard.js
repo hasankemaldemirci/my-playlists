@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 // Styles
 import "./PlaylistCard.scss";
 
-const PlaylistCard = ({ playlist, hash }) => {
+const PlaylistCard = ({ playlist }) => {
   return (
     <Link
-      to={`${playlist.id}/${playlist.name}/tracks${hash}`}
+      to={`${playlist.id}/${playlist.name}/tracks`}
       className="playlist-card"
     >
       <figure
