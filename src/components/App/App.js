@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Styles
 import "./App.scss";
@@ -8,14 +9,22 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Content from "../Content/Content";
 import Playlists from "../Playlists/Playlists";
+import Tracks from "../Tracks/Tracks";
 
 const App = () => {
   return (
-    <div className="app">
-      <Header />
-      <Content body={<Playlists />} />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <Content>
+          <Switch>
+            <Route exact path="/" component={Playlists}></Route>
+            <Route path="/:id/:name/tracks" component={Tracks}></Route>
+          </Switch>
+        </Content>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
