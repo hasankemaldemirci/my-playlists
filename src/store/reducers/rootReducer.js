@@ -1,15 +1,15 @@
 const initialState = {
   isLoggedIn: false,
-  user: {}
+  user: {},
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return { ...state, isLoggedIn: true };
-    case "LOGOUT":
+    case 'LOGOUT':
       return { ...state, isLoggedIn: false };
-    case "SET_USER":
+    case 'SET_USER':
       return { ...state, user: action.data };
     default:
       return state;

@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 // Styles
-import "./LoginButton.scss";
+import './LoginButton.scss';
 
 // Images
-import SpotifyIcon from "../../img/spotify-icon.png";
+import SpotifyIcon from '../../img/spotify-icon.png';
 
 const LoginButton = () => {
   const authURL = process.env.REACT_APP_AUTH_URL;
@@ -12,10 +12,10 @@ const LoginButton = () => {
   const redirectUri = process.env.REACT_APP_REDIRECT_URI;
   const scopes = process.env.REACT_APP_SCOPES;
 
-  const Link = () => {
+  const Button = () => {
     const appScopes = JSON.parse(scopes);
     const url = `${authURL}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${appScopes.join(
-      "%20"
+      '%20',
     )}&response_type=token&show_dialog=true`;
 
     return (
@@ -30,7 +30,7 @@ const LoginButton = () => {
     );
   };
 
-  return <Link />;
+  return <Button />;
 };
 
 export default LoginButton;

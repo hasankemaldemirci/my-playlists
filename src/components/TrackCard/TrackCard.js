@@ -1,20 +1,18 @@
-import React from "react";
+import React from 'react';
 
 // Styles
-import "./TrackCard.scss";
+import './TrackCard.scss';
 
-const TrackCard = ({ track }) => {
-  return (
-    <a href={track.uri} className="track-card">
-      <figure className="track-card__cover">
-        <img src={track.album.images[2].url} alt={track.name} />
-      </figure>
-      <figcaption>
-        <div className="track-name">{track.name}</div>
-        <div className="track-artist">{track.artists[0].name}</div>
-      </figcaption>
-    </a>
-  );
-};
+const TrackCard = ({ track }) => (
+  <a href={track.uri} className="track-card">
+    <figure className="track-card__cover">
+      <img src={track.album.images[2].url} alt={track.name} />
+    </figure>
+    <figcaption>
+      <div className="track-name">{track.name}</div>
+      <div className="track-artist">{track.artists[0].name}</div>
+    </figcaption>
+  </a>
+);
 
 export default TrackCard;

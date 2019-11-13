@@ -28,6 +28,7 @@
       align-items: center;
       height: 100%;
       cursor: pointer;
+      outline: none;
       &--open {
         .dropdown-arrow {
           transform: rotateX(-180deg);
