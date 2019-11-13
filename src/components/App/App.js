@@ -12,6 +12,7 @@ import Content from '../Content/Content';
 // Routes
 import Playlists from '../../routes/Playlists/Playlists';
 import Tracks from '../../routes/Tracks/Tracks';
+import Login from '../../routes/Login/Login';
 
 const App = () => (
   <Router>
@@ -21,6 +22,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Playlists} />
           <Route path="/:id/:name/tracks" component={Tracks} />
+          <Route path="/login" component={Login} />
         </Switch>
       </Content>
       <Footer />
