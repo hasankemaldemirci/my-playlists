@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { getPlaylistTracks } from "../../app/api";
+import React, { useEffect, useState } from 'react';
+import { getPlaylistTracks } from '../../app/api';
 
 // Styles
-import "./Tracks.scss";
+import './Tracks.scss';
 
 // Components
-import Loader from "../../components/Loader/Loader";
-import TrackCard from "../../components/TrackCard/TrackCard";
+import Loader from '../../components/Loader/Loader';
+import TrackCard from '../../components/TrackCard/TrackCard';
 
-const Tracks = props => {
+const Tracks = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [tracks, setTracks] = useState([]);
 
-  const playlistId = props.match.params.id;
+  const { match } = props;
+  const playlistId = match.params.id;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
       try {
-        await getPlaylistTracks(playlistId).then(res => {
+        await getPlaylistTracks(playlistId).then((res) => {
           setTracks(res.data.items);
         });
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        setError(err);
       } finally {
         setTimeout(() => {
           setLoading(false);
@@ -39,21 +40,25 @@ const Tracks = props => {
     <div className="tracks">
       <div className="hero">
         <div className="container">
-          <h1>{props.match.params.name} - Tracks</h1>
+          <h1>{match.params.name}</h1>
         </div>
       </div>
       <div className="container">
+        {error && (
+          <div>
+            Error:
+            {error.message}
+          </div>
+        )}
         {loading ? (
           <Loader />
-        ) : error ? (
-          <div>Error: {error.message}</div>
-        ) : tracks ? (
+        ) : (
           <div className="tracks-wrapper">
-            {tracks.map(({ track }, index) => {
-              return <TrackCard track={track} key={index} />;
-            })}
+            {tracks.map(({ track }) => (
+              <TrackCard track={track} key={track.id} />
+            ))}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,10 @@
-import React from "react";
+import React from 'react';
 
 // Styles
-import "./Avatar.scss";
+import './Avatar.scss';
 
-const Avatar = ({ name }) => {
-  return (
-    <figure className="user__avatar">{name.charAt(0).toUpperCase()}</figure>
-  );
-};
+const Avatar = ({ name }) => (
+  <figure className="user__avatar">{name.charAt(0).toUpperCase()}</figure>
+);
 
 export default Avatar;

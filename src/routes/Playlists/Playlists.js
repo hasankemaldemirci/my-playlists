@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import isAuthenticated from "../../app/auth";
-import { getPlaylists } from "../../app/api";
+import React, { useEffect, useState } from 'react';
+import isAuthenticated from '../../app/auth';
+import { getPlaylists } from '../../app/api';
 
 // Styles
-import "./Playlists.scss";
+import './Playlists.scss';
 
 // Components
-import PlaylistCard from "../../components/PlaylistCard/PlaylistCard";
-import Loader from "../../components/Loader/Loader";
+import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
+import Loader from '../../components/Loader/Loader';
 
 const Playlists = () => {
   const [loading, setLoading] = useState(false);
@@ -18,11 +18,11 @@ const Playlists = () => {
     setLoading(true);
 
     try {
-      await getPlaylists().then(res => {
+      await getPlaylists().then((res) => {
         setPlaylists(res.data.items);
       });
-    } catch (error) {
-      setError(error);
+    } catch (err) {
+      setError(err);
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -44,17 +44,21 @@ const Playlists = () => {
         </div>
       </div>
       <div className="container">
+        {error && (
+          <div>
+            Error:
+            {error.message}
+          </div>
+        )}
         {loading ? (
           <Loader />
-        ) : error ? (
-          <div>Error: {error.message}</div>
-        ) : playlists ? (
+        ) : (
           <div className="playlists-wrapper">
-            {playlists.map((playlist, index) => {
-              return <PlaylistCard playlist={playlist} key={index} />;
-            })}
+            {playlists.map((playlist) => (
+              <PlaylistCard playlist={playlist} key={playlist.id} />
+            ))}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

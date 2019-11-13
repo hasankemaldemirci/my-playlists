@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // Styles
-import "./Content.scss";
+import './Content.scss';
 
-const Content = props => {
-  return <main className="content">{props.children}</main>;
+const Content = (props) => {
+  const { children } = props;
+  return <main className="content">{children}</main>;
 };
 
 export default Content;

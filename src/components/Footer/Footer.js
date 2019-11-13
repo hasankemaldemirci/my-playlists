@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Styles
-import "./Footer.scss";
+import './Footer.scss';
 
 function Footer() {
   return (

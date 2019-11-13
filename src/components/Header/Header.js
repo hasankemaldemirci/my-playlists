@@ -1,35 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getUserInfo } from "../../app/api";
-import isAuthenticated from "../../app/auth";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserInfo } from '../../app/api';
+import isAuthenticated from '../../app/auth';
 
 // Styles
-import "./Header.scss";
+import './Header.scss';
 
 // Components
-import LoginButton from "../LoginButton/LoginButton";
-import Avatar from "../Avatar/Avatar";
+import LoginButton from '../LoginButton/LoginButton';
+import Avatar from '../Avatar/Avatar';
 
 // Images
-import SpotifyIcon from "../../img/spotify-icon.png";
-import ArrowDown from "../../img/arrow-down.png";
+import SpotifyIcon from '../../img/spotify-icon.png';
+import ArrowDown from '../../img/arrow-down.png';
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector(state => state.isLoggedIn);
-  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const user = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(false);
   const [dropdownToggle, setDropdownToggle] = useState(false);
+
+  // Log Out
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('token');
+  };
 
   // Fetch User Data
   const fetchData = async () => {
     setLoading(true);
 
     try {
-      await getUserInfo().then(res => {
-        dispatch({ type: "SET_USER", data: res.data });
+      await getUserInfo().then((res) => {
+        dispatch({ type: 'SET_USER', data: res.data });
       });
     } catch (error) {
       if (error.response.status === 401) {
@@ -43,21 +49,18 @@ const Header = () => {
   // Set user login & user info when token is available
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch({ type: "LOGIN" });
+      dispatch({ type: 'LOGIN' });
       fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Log Out
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    localStorage.removeItem("token");
-  };
-
   // User Dropdown Toggle
   const toggleUserDropdown = () => {
-    !dropdownToggle ? setDropdownToggle(true) : setDropdownToggle(false);
+    const toggle = !dropdownToggle
+      ? setDropdownToggle(true)
+      : setDropdownToggle(false);
+    return toggle;
   };
 
   return (
@@ -69,13 +72,15 @@ const Header = () => {
         </a>
         {isLoggedIn && !loading ? (
           <div className="user">
-            <div
+            <button
+              type="button"
               className={
                 dropdownToggle
-                  ? "user-display user-display--open"
-                  : "user-display"
+                  ? 'user-display user-display--open'
+                  : 'user-display'
               }
               onClick={toggleUserDropdown}
+              onKeyDown={toggleUserDropdown}
             >
               <Avatar name={user.display_name} />
               <figcaption className="user__name">
@@ -86,11 +91,11 @@ const Header = () => {
                   className="dropdown-arrow"
                 />
               </figcaption>
-            </div>
+            </button>
             <div
               className="user__dropdown"
               style={
-                dropdownToggle ? { display: "block" } : { display: "none" }
+                dropdownToggle ? { display: 'block' } : { display: 'none' }
               }
             >
               <ul>
