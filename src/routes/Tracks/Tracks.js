@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getPlaylistTracks } from '../../app/api';
 
 // Styles
@@ -9,12 +10,20 @@ import Loader from '../../components/Loader/Loader';
 import TrackCard from '../../components/TrackCard/TrackCard';
 
 const Tracks = (props) => {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [tracks, setTracks] = useState([]);
 
   const { match } = props;
   const playlistId = match.params.id;
+
+  // Log Out
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('token');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +34,9 @@ const Tracks = (props) => {
           setTracks(res.data.items);
         });
       } catch (err) {
+        if (err.response.status === 401) {
+          logout();
+        }
         setError(err);
       } finally {
         setTimeout(() => {
@@ -34,6 +46,7 @@ const Tracks = (props) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistId]);
 
   return (
