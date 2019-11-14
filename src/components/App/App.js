@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 // Styles
 import './App.scss';
@@ -14,20 +20,25 @@ import Playlists from '../../routes/Playlists/Playlists';
 import Tracks from '../../routes/Tracks/Tracks';
 import Login from '../../routes/Login/Login';
 
-const App = () => (
-  <Router>
-    <div className="app">
-      <Header />
-      <Content>
-        <Switch>
-          <Route exact path="/" component={Playlists} />
-          <Route path="/:id/:name/tracks" component={Tracks} />
-          <Route path="/login" component={Login} />
-        </Switch>
-      </Content>
-      <Footer />
-    </div>
-  </Router>
-);
+const App = () => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  return (
+    <Router>
+      <div className="app">
+        <Header />
+        <Content>
+          <Switch>
+            <Route exact path="/" component={Playlists} />
+            <Route path="/:id/:name/tracks" component={Tracks} />
+            <Route path="/login" component={Login} />
+            {isLoggedIn && <Redirect to="/" />}
+          </Switch>
+        </Content>
+        <Footer />
+      </div>
+    </Router>
+  );
+};
 
 export default App;

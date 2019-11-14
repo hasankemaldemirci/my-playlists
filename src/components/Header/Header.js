@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserInfo } from '../../app/api';
 import isAuthenticated from '../../app/auth';
@@ -7,7 +8,6 @@ import isAuthenticated from '../../app/auth';
 import './Header.scss';
 
 // Components
-import LoginButton from '../LoginButton/LoginButton';
 import Avatar from '../Avatar/Avatar';
 
 // Images
@@ -20,8 +20,9 @@ const Header = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const user = useSelector((state) => state.user);
 
-  const [loading, setLoading] = useState(false);
   const [dropdownToggle, setDropdownToggle] = useState(false);
+
+  const isRouteLogin = useLocation().pathname === '/login';
 
   // Log Out
   const logout = () => {
@@ -31,8 +32,6 @@ const Header = () => {
 
   // Fetch User Data
   const fetchData = async () => {
-    setLoading(true);
-
     try {
       await getUserInfo().then((res) => {
         dispatch({ type: 'SET_USER', data: res.data });
@@ -41,8 +40,6 @@ const Header = () => {
       if (error.response.status === 401) {
         logout();
       }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -67,10 +64,10 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <a href="/" className="logo">
-          <img src={SpotifyIcon} alt="Spotify Playlists" />
+          <img src={SpotifyIcon} alt="My Playlists" />
           My Playlists
         </a>
-        {isLoggedIn && !loading ? (
+        {isLoggedIn && !isRouteLogin && user.display_name && (
           <div className="user">
             <button
               type="button"
@@ -107,8 +104,6 @@ const Header = () => {
               </ul>
             </div>
           </div>
-        ) : (
-          <LoginButton />
         )}
       </div>
     </header>

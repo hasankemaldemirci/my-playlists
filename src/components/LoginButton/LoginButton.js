@@ -16,7 +16,7 @@ const LoginButton = () => {
     const appScopes = JSON.parse(scopes);
     const url = `${authURL}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${appScopes.join(
       '%20',
-    )}&response_type=token&show_dialog=true`;
+    )}&response_type=token`;
 
     return (
       <a href={url} className="login-button">

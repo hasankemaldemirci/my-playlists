@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import isAuthenticated from '../../app/auth';
 import { getPlaylists } from '../../app/api';
 
@@ -10,9 +11,17 @@ import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
 import Loader from '../../components/Loader/Loader';
 
 const Playlists = () => {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playlists, setPlaylists] = useState([]);
+
+  // Log Out
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('token');
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -22,6 +31,9 @@ const Playlists = () => {
         setPlaylists(res.data.items);
       });
     } catch (err) {
+      if (err.response.status === 401) {
+        logout();
+      }
       setError(err);
     } finally {
       setTimeout(() => {
@@ -34,6 +46,7 @@ const Playlists = () => {
     if (isAuthenticated) {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
