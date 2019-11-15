@@ -49,11 +49,18 @@ const Playlists = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const TotalPlaylistCount = () => (
+    playlists.length ? (
+      <h2>Total Playlists Count: {playlists.length}</h2>
+    ) : null
+  );
+
   return (
     <div className="playlists">
       <div className="hero">
         <div className="container">
           <h1>Playlists</h1>
+          <TotalPlaylistCount />
         </div>
       </div>
       <div className="container">
