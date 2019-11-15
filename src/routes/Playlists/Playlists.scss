@@ -13,5 +13,16 @@
     position: sticky;
     top: 50px;
     z-index: 3;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    h2 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: .75;
+    }  
   }
 }
