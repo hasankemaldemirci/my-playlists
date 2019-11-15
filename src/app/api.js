@@ -22,11 +22,17 @@ export const getPlaylists = () => {
   return response;
 };
 
-export const getPlaylistTracks = (playlistId) => {
-  const response = axios({
+export const getPlaylistTracks = async (playlistId) => {
+  const playlist = await axios({
+    url: `${apiURL}/playlists/${playlistId}`,
+    headers,
+  });
+  const tracks = await axios({
     url: `${apiURL}/playlists/${playlistId}/tracks`,
     headers,
   });
+
+  const response = Promise.all([playlist.data, tracks.data]);
 
   return response;
 };

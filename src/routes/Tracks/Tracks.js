@@ -15,9 +15,10 @@ const Tracks = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [tracks, setTracks] = useState([]);
+  const [playlist, setPlaylist] = useState({});
 
-  const { match } = props;
-  const playlistId = match.params.id;
+  // const { match } = props;
+  // const playlistId = match.params.id;
 
   // Log Out
   const logout = () => {
@@ -30,10 +31,12 @@ const Tracks = (props) => {
       setLoading(true);
 
       try {
-        await getPlaylistTracks(playlistId).then((res) => {
-          setTracks(res.data.items);
+        await getPlaylistTracks(playlist.id).then((res) => {
+          setPlaylist(res[0]);
+          setTracks(res[1].items);
         });
       } catch (err) {
+        console.log(err);
         if (err.response.status === 401) {
           logout();
         }
@@ -47,15 +50,15 @@ const Tracks = (props) => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlistId]);
+  }, []);
 
   return (
     <div className="tracks">
-      <div className="hero">
+      {/* <div className="hero">
         <div className="container">
           <h1>{match.params.name}</h1>
         </div>
-      </div>
+      </div> */}
       <div className="container">
         {error && (
           <div>
@@ -67,9 +70,14 @@ const Tracks = (props) => {
           <Loader />
         ) : (
           <div className="tracks-wrapper">
-            {tracks.map(({ track }) => (
-              <TrackCard track={track} key={track.id} />
-            ))}
+            <div className="tracks__playlist">
+              <h1>{playlist.name}</h1>
+            </div>
+            <div className="tracks__list">
+              {tracks.map(({ track }) => (
+                <TrackCard track={track} key={track.id} />
+              ))}
+            </div>
           </div>
         )}
       </div>
