@@ -1,8 +1,8 @@
-import hash from '../utils/hash';
+import parseToken from '../utils/parseToken';
 import history from '../utils/history';
 
 const isAuthenticated = () => {
-  const token = hash.access_token || localStorage.getItem('token');
+  const token = parseToken() || localStorage.getItem('token');
   if (token) {
     localStorage.setItem('token', token);
   } else {

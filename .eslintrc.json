@@ -19,6 +19,7 @@
     "react/prop-types": 0,
     "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }],
     "no-use-before-define": ["error", { "functions": false }],
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "import/no-named-as-default": 0
   }
 }
