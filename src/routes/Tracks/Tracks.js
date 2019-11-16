@@ -17,10 +17,11 @@ const Tracks = (props) => {
   const [tracks, setTracks] = useState([]);
   const [playlist, setPlaylist] = useState({});
 
-  // const { match } = props;
-  // const playlistId = match.params.id;
+  // Get playlist id from query
+  const { match } = props;
+  const playlistId = match.params.id;
 
-  // Log Out
+  // Log out
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
@@ -31,12 +32,11 @@ const Tracks = (props) => {
       setLoading(true);
 
       try {
-        await getPlaylistTracks(playlist.id).then((res) => {
-          setPlaylist(res[0]);
-          setTracks(res[1].items);
+        await getPlaylistTracks(playlistId).then((res) => {
+          setPlaylist(res.data);
+          setTracks(res.data.tracks.items);
         });
       } catch (err) {
-        console.log(err);
         if (err.response.status === 401) {
           logout();
         }
@@ -54,11 +54,6 @@ const Tracks = (props) => {
 
   return (
     <div className="tracks">
-      {/* <div className="hero">
-        <div className="container">
-          <h1>{match.params.name}</h1>
-        </div>
-      </div> */}
       <div className="container">
         {error && (
           <div>
@@ -70,8 +65,20 @@ const Tracks = (props) => {
           <Loader />
         ) : (
           <div className="tracks-wrapper">
-            <div className="tracks__playlist">
-              <h1>{playlist.name}</h1>
+            <div className="tracks__sidebar">
+              <div className="playlist-detail">
+                {playlist.images && (
+                  <figure className="playlist-detail__img">
+                    <img src={playlist.images[1].url} alt={playlist.name} />
+                  </figure>
+                )}
+                <figcaption className="playlist-detail__body">
+                  <h1>{playlist.name}</h1>
+                  {playlist.tracks && (
+                    <div className="count">{playlist.tracks.total} Songs</div>
+                  )}
+                </figcaption>
+              </div>
             </div>
             <div className="tracks__list">
               {tracks.map(({ track }) => (

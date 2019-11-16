@@ -6,11 +6,35 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  &__playlist {
+  &__sidebar {
+    position: relative;
     flex: 0 0 25%;
-    padding-right: 15px;
-    h1 {
-      margin: 0;
+    .playlist-detail {
+      position: sticky;
+      top: 70px;
+      &__img {
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      &__body {
+        margin-top: 5px;
+        h1 {
+          margin: 0;
+          font-size: 24px;
+        }
+        .count {
+          font-weight: 500;
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+  &__list {
+    margin-left: 80px;
+    .track-card {
+      & + .track-card {
+        margin-top: 20px;
+      }
     }
   }
 }
