@@ -2,12 +2,39 @@
   position: relative;
   min-height: calc(100vh - 100px);
   &-wrapper {
+    display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .hero {
-    position: sticky;
-    top: 50px;
-    z-index: 3;
+  &__sidebar {
+    position: relative;
+    flex: 0 0 25%;
+    .playlist-detail {
+      position: sticky;
+      top: 70px;
+      &__img {
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      &__body {
+        margin-top: 5px;
+        h1 {
+          margin: 0;
+          font-size: 24px;
+        }
+        .count {
+          font-weight: 500;
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+  &__list {
+    margin-left: 80px;
+    .track-card {
+      & + .track-card {
+        margin-top: 20px;
+      }
+    }
   }
 }

@@ -15,11 +15,13 @@ const Tracks = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [tracks, setTracks] = useState([]);
+  const [playlist, setPlaylist] = useState({});
 
+  // Get playlist id from query
   const { match } = props;
   const playlistId = match.params.id;
 
-  // Log Out
+  // Log out
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
@@ -31,7 +33,8 @@ const Tracks = (props) => {
 
       try {
         await getPlaylistTracks(playlistId).then((res) => {
-          setTracks(res.data.items);
+          setPlaylist(res.data);
+          setTracks(res.data.tracks.items);
         });
       } catch (err) {
         if (err.response.status === 401) {
@@ -47,15 +50,10 @@ const Tracks = (props) => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlistId]);
+  }, []);
 
   return (
     <div className="tracks">
-      <div className="hero">
-        <div className="container">
-          <h1>{match.params.name}</h1>
-        </div>
-      </div>
       <div className="container">
         {error && (
           <div>
@@ -67,9 +65,26 @@ const Tracks = (props) => {
           <Loader />
         ) : (
           <div className="tracks-wrapper">
-            {tracks.map(({ track }) => (
-              <TrackCard track={track} key={track.id} />
-            ))}
+            <div className="tracks__sidebar">
+              <div className="playlist-detail">
+                {playlist.images && (
+                  <figure className="playlist-detail__img">
+                    <img src={playlist.images[1].url} alt={playlist.name} />
+                  </figure>
+                )}
+                <figcaption className="playlist-detail__body">
+                  <h1>{playlist.name}</h1>
+                  {playlist.tracks && (
+                    <div className="count">{playlist.tracks.total} Songs</div>
+                  )}
+                </figcaption>
+              </div>
+            </div>
+            <div className="tracks__list">
+              {tracks.map(({ track }) => (
+                <TrackCard track={track} key={track.id} />
+              ))}
+            </div>
           </div>
         )}
       </div>
