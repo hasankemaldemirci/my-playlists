@@ -25,7 +25,7 @@ const App = () => {
         <Content>
           <Switch>
             <Route exact path="/" component={Playlists} />
-            <Route path="/:id/:name/tracks" component={Tracks} />
+            <Route path="/:id/tracks" component={Tracks} />
             <Route path="/login" component={Login} />
             {isLoggedIn && <Redirect to="/" />}
           </Switch>
