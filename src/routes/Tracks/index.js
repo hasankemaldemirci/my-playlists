@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { getPlaylistTracks } from '../../app/api';
 
 // Styles
@@ -10,8 +9,6 @@ import Loader from '../../components/Loader';
 import TrackCard from '../../components/TrackCard';
 
 const Tracks = props => {
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [tracks, setTracks] = useState([]);
@@ -20,12 +17,6 @@ const Tracks = props => {
   // Get playlist id from query
   const { match } = props;
   const playlistId = match.params.id;
-
-  // Log out
-  const logout = useCallback(() => {
-    dispatch({ type: 'LOGOUT' });
-    localStorage.removeItem('token');
-  }, [dispatch]);
 
   // Fetch Playlist Item Data
   const fetchData = useCallback(async () => {
@@ -37,16 +28,15 @@ const Tracks = props => {
         setTracks(res.data.tracks.items);
       });
     } catch (err) {
-      if (err.response.status === 401) {
-        logout();
+      if (err.response.status !== 401) {
+        setError(err);
       }
-      setError(err);
     } finally {
       setTimeout(() => {
         setLoading(false);
       }, 500);
     }
-  }, [logout, playlistId]);
+  }, [playlistId]);
 
   useEffect(() => {
     fetchData();

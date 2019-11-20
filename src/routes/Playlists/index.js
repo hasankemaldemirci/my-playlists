@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import isAuthenticated from '../../app/auth';
 import { getPlaylists } from '../../app/api';
 
@@ -11,17 +10,9 @@ import PlaylistCard from '../../components/PlaylistCard';
 import Loader from '../../components/Loader';
 
 const Playlists = () => {
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playlists, setPlaylists] = useState([]);
-
-  // Log Out
-  const logout = useCallback(() => {
-    dispatch({ type: 'LOGOUT' });
-    localStorage.removeItem('token');
-  }, [dispatch]);
 
   // Fetch Playlists Data
   const fetchData = useCallback(async () => {
@@ -32,16 +23,15 @@ const Playlists = () => {
         setPlaylists(res.data.items);
       });
     } catch (err) {
-      if (err.response.status === 401) {
-        logout();
+      if (err.response.status !== 401) {
+        setError(err);
       }
-      setError(err);
     } finally {
       setTimeout(() => {
         setLoading(false);
       }, 500);
     }
-  }, [logout]);
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
