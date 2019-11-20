@@ -32,9 +32,7 @@ const Tracks = props => {
         setError(err);
       }
     } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
+      setLoading(false);
     }
   }, [playlistId]);
 
