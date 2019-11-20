@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPlaylistTracks } from '../../app/api';
 
@@ -9,7 +9,7 @@ import './Tracks.scss';
 import Loader from '../../components/Loader/Loader';
 import TrackCard from '../../components/TrackCard/TrackCard';
 
-const Tracks = (props) => {
+const Tracks = props => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
@@ -22,35 +22,35 @@ const Tracks = (props) => {
   const playlistId = match.params.id;
 
   // Log out
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
-  };
+  }, [dispatch]);
+
+  // Fetch Playlist Item Data
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      await getPlaylistTracks(playlistId).then(res => {
+        setPlaylist(res.data);
+        setTracks(res.data.tracks.items);
+      });
+    } catch (err) {
+      if (err.response.status === 401) {
+        logout();
+      }
+      setError(err);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
+  }, [logout, playlistId]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-
-      try {
-        await getPlaylistTracks(playlistId).then((res) => {
-          setPlaylist(res.data);
-          setTracks(res.data.tracks.items);
-        });
-      } catch (err) {
-        if (err.response.status === 401) {
-          logout();
-        }
-        setError(err);
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
-      }
-    };
-
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchData]);
 
   return (
     <div className="tracks">
@@ -74,9 +74,7 @@ const Tracks = (props) => {
                 )}
                 <figcaption className="playlist-detail__body">
                   <h1>{playlist.name}</h1>
-                  {playlist.tracks && (
-                    <div className="count">{playlist.tracks.total} Songs</div>
-                  )}
+                  {playlist.tracks && <div className="count">{playlist.tracks.total} Songs</div>}
                 </figcaption>
               </div>
             </div>
