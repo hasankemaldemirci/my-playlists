@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import './TrackCard.scss';
+import './style.scss';
 
 const TrackCard = ({ track }) => (
   <a href={track.uri} className="track-card">

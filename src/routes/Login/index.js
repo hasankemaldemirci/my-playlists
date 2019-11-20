@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Styles
-import './Login.scss';
+import './style.scss';
 
 // Components
-import LoginButton from '../../components/LoginButton/LoginButton';
+import LoginButton from '../../components/LoginButton';
 
 // Images
 import Logo from '../../img/logo.png';

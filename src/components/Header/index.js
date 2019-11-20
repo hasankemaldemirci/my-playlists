@@ -8,10 +8,10 @@ import isAuthenticated from '../../app/auth';
 import history from '../../utils/history';
 
 // Styles
-import './Header.scss';
+import './style.scss';
 
 // Components
-import Avatar from '../Avatar/Avatar';
+import Avatar from '../Avatar';
 
 // Images
 import SpotifyIcon from '../../img/spotify-icon.png';

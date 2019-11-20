@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import './Content.scss';
+import './style.scss';
 
 const Content = (props) => {
   const { children } = props;

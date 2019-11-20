@@ -1,27 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 // Styles
 import './App.scss';
 
 // Components
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Content from '../Content/Content';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Content from './components/Content';
 
 // Routes
-import Playlists from '../../routes/Playlists/Playlists';
-import Tracks from '../../routes/Tracks/Tracks';
-import Login from '../../routes/Login/Login';
+import Playlists from './routes/Playlists';
+import Tracks from './routes/Tracks';
+import Login from './routes/Login';
 
 const App = () => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   return (
     <Router>

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { getPlaylistTracks } from '../../app/api';
 
 // Styles
-import './Tracks.scss';
+import './style.scss';
 
 // Components
-import Loader from '../../components/Loader/Loader';
-import TrackCard from '../../components/TrackCard/TrackCard';
+import Loader from '../../components/Loader';
+import TrackCard from '../../components/TrackCard';
 
 const Tracks = props => {
   const dispatch = useDispatch();
