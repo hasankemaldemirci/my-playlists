@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserInfo } from '../../app/api';
@@ -17,23 +17,23 @@ import ArrowDown from '../../img/arrow-down.png';
 const Header = () => {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const user = useSelector((state) => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const user = useSelector(state => state.user);
 
   const [dropdownToggle, setDropdownToggle] = useState(false);
 
   const isRouteLogin = useLocation().pathname === '/login';
 
   // Log Out
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
-  };
+  }, [dispatch]);
 
   // Fetch User Data
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
-      await getUserInfo().then((res) => {
+      await getUserInfo().then(res => {
         dispatch({ type: 'SET_USER', data: res.data });
       });
     } catch (error) {
@@ -41,7 +41,7 @@ const Header = () => {
         logout();
       }
     }
-  };
+  }, [dispatch, logout]);
 
   // Set user login & user info when token is available
   useEffect(() => {
@@ -49,14 +49,11 @@ const Header = () => {
       dispatch({ type: 'LOGIN' });
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, fetchData]);
 
   // User Dropdown Toggle
   const toggleUserDropdown = () => {
-    const toggle = !dropdownToggle
-      ? setDropdownToggle(true)
-      : setDropdownToggle(false);
+    const toggle = !dropdownToggle ? setDropdownToggle(true) : setDropdownToggle(false);
     return toggle;
   };
 
@@ -71,29 +68,19 @@ const Header = () => {
           <div className="user">
             <button
               type="button"
-              className={
-                dropdownToggle
-                  ? 'user-display user-display--open'
-                  : 'user-display'
-              }
+              className={dropdownToggle ? 'user-display user-display--open' : 'user-display'}
               onClick={toggleUserDropdown}
               onKeyDown={toggleUserDropdown}
             >
               <Avatar name={user.display_name} />
               <figcaption className="user__name">
                 {user.display_name}
-                <img
-                  src={ArrowDown}
-                  alt={user.display_name}
-                  className="dropdown-arrow"
-                />
+                <img src={ArrowDown} alt={user.display_name} className="dropdown-arrow" />
               </figcaption>
             </button>
             <div
               className="user__dropdown"
-              style={
-                dropdownToggle ? { display: 'block' } : { display: 'none' }
-              }
+              style={dropdownToggle ? { display: 'block' } : { display: 'none' }}
             >
               <ul>
                 <li>

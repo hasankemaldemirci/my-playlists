@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import isAuthenticated from '../../app/auth';
 import { getPlaylists } from '../../app/api';
@@ -18,16 +18,17 @@ const Playlists = () => {
   const [playlists, setPlaylists] = useState([]);
 
   // Log Out
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
-  };
+  }, [dispatch]);
 
-  const fetchData = async () => {
+  // Fetch Playlists Data
+  const fetchData = useCallback(async () => {
     setLoading(true);
 
     try {
-      await getPlaylists().then((res) => {
+      await getPlaylists().then(res => {
         setPlaylists(res.data.items);
       });
     } catch (err) {
@@ -40,20 +41,16 @@ const Playlists = () => {
         setLoading(false);
       }, 500);
     }
-  };
+  }, [logout]);
 
   useEffect(() => {
     if (isAuthenticated) {
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchData]);
 
-  const TotalPlaylistCount = () => (
-    playlists.length ? (
-      <h2>Total Playlists Count: {playlists.length}</h2>
-    ) : null
-  );
+  const TotalPlaylistCount = () =>
+    playlists.length ? <h2>Total Playlists Count: {playlists.length}</h2> : null;
 
   return (
     <div className="playlists">
@@ -74,7 +71,7 @@ const Playlists = () => {
           <Loader />
         ) : (
           <div className="playlists-wrapper">
-            {playlists.map((playlist) => (
+            {playlists.map(playlist => (
               <PlaylistCard playlist={playlist} key={playlist.id} />
             ))}
           </div>
