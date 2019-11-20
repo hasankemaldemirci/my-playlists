@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserInfo } from '../../app/api';
 import isAuthenticated from '../../app/auth';
 
+// Utils
+import history from '../../utils/history';
+
 // Styles
 import './Header.scss';
 
@@ -28,6 +31,7 @@ const Header = () => {
   const logout = useCallback(() => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
+    history.replace('/login');
   }, [dispatch]);
 
   // Fetch User Data
