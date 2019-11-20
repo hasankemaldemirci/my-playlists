@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Styles
-import './PlaylistCard.scss';
+import './style.scss';
 
 const PlaylistCard = ({ playlist }) => (
   <Link to={`${playlist.id}/${playlist.name}/tracks`} className="playlist-card">

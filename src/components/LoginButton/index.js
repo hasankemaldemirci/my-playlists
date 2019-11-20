@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import './LoginButton.scss';
+import './style.scss';
 
 // Images
 import SpotifyIcon from '../../img/spotify-icon.png';
@@ -20,11 +20,7 @@ const LoginButton = () => {
 
     return (
       <a href={url} className="login-button">
-        <img
-          src={SpotifyIcon}
-          alt="Login to Spotify"
-          className="login-button__icon"
-        />
+        <img src={SpotifyIcon} alt="Login to Spotify" className="login-button__icon" />
         Login to Spotify
       </a>
     );

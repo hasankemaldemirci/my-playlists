@@ -4,11 +4,11 @@ import isAuthenticated from '../../app/auth';
 import { getPlaylists } from '../../app/api';
 
 // Styles
-import './Playlists.scss';
+import './style.scss';
 
 // Components
-import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
-import Loader from '../../components/Loader/Loader';
+import PlaylistCard from '../../components/PlaylistCard';
+import Loader from '../../components/Loader';
 
 const Playlists = () => {
   const dispatch = useDispatch();
