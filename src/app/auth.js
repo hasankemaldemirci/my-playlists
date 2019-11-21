@@ -1,3 +1,4 @@
+// Utils
 import parseToken from '../utils/parseToken';
 import history from '../utils/history';
 
@@ -7,7 +8,7 @@ const isAuthenticated = () => {
     localStorage.setItem('token', token);
   } else {
     console.log('Redirected to login.');
-    history.replace('/login');
+    history.push('/login');
   }
   return token;
 };

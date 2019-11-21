@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserInfo } from '../../app/api';
-import isAuthenticated from '../../app/auth';
 
 // Styles
 import './style.scss';
@@ -29,27 +27,6 @@ const Header = () => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
   }, [dispatch]);
-
-  // Fetch User Data
-  const fetchData = useCallback(async () => {
-    try {
-      await getUserInfo().then(res => {
-        dispatch({ type: 'SET_USER', data: res.data });
-      });
-    } catch (error) {
-      if (error.response.status === 401) {
-        logout();
-      }
-    }
-  }, [dispatch, logout]);
-
-  // Set user login & user info when token is available
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch({ type: 'LOGIN' });
-      fetchData();
-    }
-  }, [dispatch, fetchData]);
 
   // User Dropdown Toggle
   const toggleUserDropdown = () => {
