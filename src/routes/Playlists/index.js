@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import isAuthenticated from '../../app/auth';
 import { getPlaylists } from '../../app/api';
 
 // Styles
@@ -32,9 +31,7 @@ const Playlists = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchData();
-    }
+    fetchData();
   }, [fetchData]);
 
   const TotalPlaylistCount = () =>
