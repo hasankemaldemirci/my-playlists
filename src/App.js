@@ -1,6 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { getUserInfo } from './app/api';
+import isAuthenticated from './app/auth';
+
+// Utils
+import history from './utils/history';
 
 // Styles
 import './App.scss';
@@ -16,10 +21,39 @@ import Tracks from './routes/Tracks';
 import Login from './routes/Login';
 
 const App = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.isLoggedIn);
 
+  // Log Out
+  const logout = useCallback(() => {
+    dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('token');
+    history.push('/login');
+  }, [dispatch]);
+
+  // Fetch User Data
+  const fetchData = useCallback(async () => {
+    try {
+      await getUserInfo().then(res => {
+        dispatch({ type: 'LOGIN' });
+        dispatch({ type: 'SET_USER', data: res.data });
+      });
+    } catch (error) {
+      if (error.response.status === 401) {
+        logout();
+      }
+    }
+  }, [dispatch, logout]);
+
+  // Set user login & user info when token is available
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchData();
+    }
+  }, [dispatch, fetchData]);
+
   return (
-    <Router>
+    <Router history={history}>
       <div className="app">
         <Header />
         <Content>
