@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Config
+import config from '../../app/config';
+
 // Styles
 import './style.scss';
 
@@ -7,16 +10,14 @@ import './style.scss';
 import SpotifyIcon from '../../img/spotify-icon.png';
 
 const LoginButton = () => {
-  const authURL = process.env.REACT_APP_AUTH_URL;
-  const clientId = process.env.REACT_APP_CLIENT_ID;
-  const redirectUri = process.env.REACT_APP_REDIRECT_URI;
-  const scopes = process.env.REACT_APP_SCOPES;
+  const authURL = config.AUTH_URL;
+  const clientId = config.CLIENT_ID;
+  const redirectUri = config.REDIRECT_URI;
+  const scopes = config.SCOPES;
 
   const Button = () => {
-    const appScopes = JSON.parse(scopes);
-    const url = `${authURL}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${appScopes.join(
-      '%20',
-    )}&response_type=token`;
+    const appScopes = scopes.join('&');
+    const url = `${authURL}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${appScopes}&response_type=token`;
 
     return (
       <a href={url} className="login-button">

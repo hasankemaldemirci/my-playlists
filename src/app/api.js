@@ -1,7 +1,8 @@
 import axios from 'axios';
 import token from './auth';
+import config from './config';
 
-const apiURL = process.env.REACT_APP_SPOTIFY_API;
+const apiURL = config.API_URL;
 const headers = { Authorization: `Bearer ${token}` };
 
 function getUserInfo() {
