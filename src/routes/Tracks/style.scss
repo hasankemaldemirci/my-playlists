@@ -3,38 +3,40 @@
   min-height: calc(100vh - 100px);
   &-wrapper {
     display: flex;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   &__sidebar {
     position: relative;
     flex: 0 0 25%;
+    max-width: 25%;
     .playlist-detail {
       position: sticky;
-      top: 70px;
+      top: 80px;
       &__img {
         border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .25);
         overflow: hidden;
       }
       &__body {
-        margin-top: 5px;
+        margin-top: 15px;
         h1 {
           margin: 0;
           font-size: 24px;
+          line-height: 1em;
         }
         .count {
-          font-weight: 500;
+          margin-top: 5px;
+          font-weight: 600;
           opacity: 0.75;
         }
       }
     }
   }
   &__list {
-    margin-left: 80px;
-    .track-card {
-      & + .track-card {
-        margin-top: 30px;
-      }
-    }
+    position: relative;
+    flex: 0 0 calc(75% - 60px);
+    max-width: calc(75% - 60px);
+    margin-left: 45px;
   }
 }

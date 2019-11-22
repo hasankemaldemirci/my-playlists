@@ -23,10 +23,21 @@ function getPlaylists() {
   return response;
 }
 
-function getPlaylistTracks(playlistId) {
-  const response = axios({
+function getPlaylistTracks(playlistId, offset, limit) {
+  const playlist = axios({
     url: `${apiURL}/playlists/${playlistId}`,
     headers,
+  });
+  const tracks = axios({
+    url: `${apiURL}/playlists/${playlistId}/tracks?offset=${offset}&limit=${limit}`,
+    headers,
+  });
+
+  const response = Promise.all([playlist, tracks]).then(res => {
+    return {
+      playlist: res[0].data,
+      tracks: res[1].data,
+    }
   });
 
   return response;

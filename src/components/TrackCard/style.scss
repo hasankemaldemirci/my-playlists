@@ -1,20 +1,37 @@
 .track-card {
   display: flex;
   align-items: center;
+  padding: 15px 30px;
+  border-radius: 5px;
+  overflow: hidden;
   &__cover {
+    flex: 0 0 64px;
     margin-right: 15px;
     border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
     overflow: hidden;
   }
   .track-name {
     font-size: 18px;
     font-weight: 700;
+    line-height: 1.25em;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .track-artist {
-    font-weight: 500;
+    margin-top: 5px;
+    font-weight: 600;
     opacity: .75;
   }
   &:hover {
+    background-color: #eee;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .25);
     color: inherit;
+  }
+  &:active {
+    background-color: #ddd;
+    box-shadow: none;
   }
 }
