@@ -9,8 +9,8 @@ import './style.scss';
 import Avatar from '../Avatar';
 
 // Images
-import SpotifyIcon from '../../img/spotify-icon.png';
 import ArrowDown from '../../img/arrow-down.png';
+import Logo from '../../img/logo.png';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <a href="/" className="logo">
-          <img src={SpotifyIcon} alt="My Playlists" />
+          <img src={Logo} alt="My Playlists" />
           My Playlists
         </a>
         {isLoggedIn && !isRouteLogin && user.display_name && (
