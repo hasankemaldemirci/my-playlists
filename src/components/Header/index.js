@@ -41,20 +41,22 @@ const Header = () => {
           <img src={Logo} alt="My Playlists" />
           My Playlists
         </a>
-        {isLoggedIn && !isRouteLogin && user.display_name && (
+        {isLoggedIn && !isRouteLogin && (
           <div className="user">
-            <button
-              type="button"
-              className={dropdownToggle ? 'user-display user-display--open' : 'user-display'}
-              onClick={toggleUserDropdown}
-              onKeyDown={toggleUserDropdown}
-            >
-              <Avatar name={user.display_name} />
-              <figcaption className="user__name">
-                <span>{user.display_name}</span>
-                <img src={ArrowDown} alt={user.display_name} className="dropdown-arrow" />
-              </figcaption>
-            </button>
+            {user && user.display_name && (
+              <button
+                type="button"
+                className={dropdownToggle ? 'user-display user-display--open' : 'user-display'}
+                onClick={toggleUserDropdown}
+                onKeyDown={toggleUserDropdown}
+              >
+                <Avatar name={user.display_name} />
+                <figcaption className="user__name">
+                  <span>{user.display_name}</span>
+                  <img src={ArrowDown} alt={user.display_name} className="dropdown-arrow" />
+                </figcaption>
+              </button>
+            )}
             <div
               className="user__dropdown"
               style={dropdownToggle ? { display: 'block' } : { display: 'none' }}
