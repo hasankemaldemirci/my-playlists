@@ -25,4 +25,12 @@
       opacity: .75;
     }  
   }
+  @media only screen and (max-width: 360px) {
+    &-wrapper {
+      margin-left: 0;
+      margin-right: 0;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
 }

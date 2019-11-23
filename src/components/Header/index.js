@@ -51,7 +51,7 @@ const Header = () => {
             >
               <Avatar name={user.display_name} />
               <figcaption className="user__name">
-                {user.display_name}
+                <span>{user.display_name}</span>
                 <img src={ArrowDown} alt={user.display_name} className="dropdown-arrow" />
               </figcaption>
             </button>
