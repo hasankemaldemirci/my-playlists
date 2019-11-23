@@ -13,7 +13,7 @@ const Tracks = props => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [limit] = useState(20);
+  const [limit] = useState(30);
   const [currentPage, setCurrentPage] = useState(1);
   const [tracks, setTracks] = useState({});
   const [playlist, setPlaylist] = useState({});
