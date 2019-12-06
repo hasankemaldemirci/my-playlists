@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getUserInfo } from './app/api';
 import isAuthenticated from './app/auth';
+import loadable from '@loadable/component';
 
 // Utils
 import history from './utils/history';
@@ -16,9 +17,9 @@ import Footer from './components/Footer';
 import Content from './components/Content';
 
 // Routes
-import Playlists from './routes/Playlists';
-import Tracks from './routes/Tracks';
-import Login from './routes/Login';
+const Playlists = loadable(() => import('./routes/Playlists'));
+const Tracks = loadable(() => import('./routes/Tracks'));
+const Login = loadable(() => import('./routes/Login'));
 
 const App = () => {
   const dispatch = useDispatch();
