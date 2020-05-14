@@ -5,6 +5,7 @@
   "dependencies": {
     "@loadable/component": "^5.12.0",
     "axios": "^0.19.2",
+    "enzyme-adapter-react-16": "^1.15.2",
     "history": "^4.10.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
@@ -40,11 +41,13 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1"
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "jest-enzyme": "^7.1.2"
   }
 }
