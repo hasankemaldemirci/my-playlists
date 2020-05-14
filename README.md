@@ -1,3 +1,5 @@
+![CI](https://github.com/hasankemaldemirci/my-playlists/workflows/CI/badge.svg)
+
 # My Spotify Playlists 🎧
 
 > Lists User's existing playlists and tracks from Spotify.  
