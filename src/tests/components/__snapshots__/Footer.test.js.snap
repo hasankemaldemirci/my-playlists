@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Footer correctly 1`] = `
+<footer
+  className="footer"
+>
+  <div
+    className="container"
+  >
+    <span
+      className="copyright"
+    >
+      © Spotify Playlists App by HKD
+    </span>
+  </div>
+</footer>
+`;
