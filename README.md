@@ -1,5 +1,4 @@
-![CI](https://github.com/canyener/my-playlists/workflows/CI/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=canyener_my-playlists&metric=alert_status)](https://sonarcloud.io/dashboard?id=canyener_my-playlists)
+![CI](https://github.com/hasankemaldemirci/my-playlists/workflows/CI/badge.svg)
 
 # My Spotify Playlists 🎧
 
