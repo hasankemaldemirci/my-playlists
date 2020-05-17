@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Avatar correctly 1`] = `
+<figure
+  className="user__avatar"
+>
+  T
+</figure>
+`;
