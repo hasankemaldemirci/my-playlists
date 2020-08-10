@@ -59,10 +59,10 @@ const App = () => {
         <Header />
         <Content>
           <Switch>
-            <Route exact path="/" component={Playlists} />
+            <Route exact path="/playlists" component={Playlists} />
             <Route path="/:id/tracks" component={Tracks} />
             <Route path="/login" component={Login} />
-            {isLoggedIn && <Redirect to="/" />}
+            {isLoggedIn && <Redirect to="/playlists" />}
           </Switch>
         </Content>
         <Footer />
