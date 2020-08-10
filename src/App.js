@@ -17,9 +17,9 @@ import Footer from './components/Footer';
 import Content from './components/Content';
 
 // Routes
-const Playlists = loadable(() => import('./routes/Playlists'));
-const Tracks = loadable(() => import('./routes/Tracks'));
-const Login = loadable(() => import('./routes/Login'));
+const Playlists = loadable(() => import('./routes/Playlists/index.js'));
+const Tracks = loadable(() => import('./routes/Tracks/index.js'));
+const Login = loadable(() => import('./routes/Login/index.js'));
 
 const App = () => {
   const dispatch = useDispatch();
