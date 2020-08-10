@@ -64,7 +64,7 @@ const Tracks = props => {
             <div className="playlist-detail">
               {playlist.images && (
                 <figure className="playlist-detail__img">
-                  <img src={playlist.images[1].url} alt={playlist.name} />
+                  <img src={playlist.images[0].url} alt={playlist.name} />
                 </figure>
               )}
               <figcaption className="playlist-detail__body">
