@@ -17,9 +17,9 @@ import Footer from './components/Footer';
 import Content from './components/Content';
 
 // Routes
-const Playlists = loadable(() => import('./routes/Playlists/index.js'));
-const Tracks = loadable(() => import('./routes/Tracks/index.js'));
-const Login = loadable(() => import('./routes/Login/index.js'));
+import Playlists from './routes/Playlists';
+import Tracks from './routes/Tracks';
+import Login from './routes/Login';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,10 +59,10 @@ const App = () => {
         <Header />
         <Content>
           <Switch>
-            <Route exact path="/playlists" component={Playlists} />
+            <Route exact path="/" component={Playlists} />
             <Route path="/:id/tracks" component={Tracks} />
             <Route path="/login" component={Login} />
-            {isLoggedIn && <Redirect to="/playlists" />}
+            {isLoggedIn && <Redirect to="/" />}
           </Switch>
         </Content>
         <Footer />
